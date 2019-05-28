@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Birthday Reminder</string>
+
+    <!-- ========= Global ============= -->
+    <string name="home">Home</string>
+    <string name="list">List</string>
+    <string name="calendar">Calendar</string>
+    <string name="settings">Settings</string>
+
+    <!-- ========= Options Menu ========== -->
+    <string name="action_create_contact">Create Contact</string>
+    <string name="action_import_contact">Import Contact</string>
+
+</resources>

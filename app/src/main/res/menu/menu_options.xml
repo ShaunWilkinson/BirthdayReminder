@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_create_contact"
+        android:title="@string/action_create_contact" />
+    <item
+        android:id="@+id/action_import_contact"
+        android:title="@string/action_import_contact" />
+    <item
+        android:id="@+id/action_goto_settings"
+        android:title="@string/settings" />
+</menu>
