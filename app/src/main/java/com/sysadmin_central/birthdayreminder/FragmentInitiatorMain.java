@@ -1,13 +1,13 @@
 package com.sysadmin_central.birthdayreminder;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 public class FragmentInitiatorMain extends Fragment {
-    public static final String ARG_PAGE = "ARG_PAGE";
+    private static final String ARG_PAGE = "ARG_PAGE";
     private int mPage;
 
     // Singleton pattern to create a new instance of the fragment

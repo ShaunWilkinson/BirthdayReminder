@@ -1,32 +1,32 @@
 package com.sysadmin_central.birthdayreminder;
 
+import androidx.room.Room;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.tabs.TabLayout;
+import androidx.viewpager.widget.ViewPager;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import com.sysadmin_central.birthdayreminder.contacts.DatabaseContacts;
+
 public class ActivityMain extends AppCompatActivity {
 
-    ViewPager viewPager;
-    TabLayout tabLayout;
+    private static final String TAG = "ActivityMain";
+    private static final String DATABASE_NAME = "contacts_db";
+    private DatabaseContacts databaseContacts;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Get the viewPager and set it's PagerAdapter so it displays items
-        viewPager = findViewById(R.id.viewPager);
-        AdapterMainTabs pagerAdapter = new AdapterMainTabs(getSupportFragmentManager(), ActivityMain.this);
-        viewPager.setAdapter(pagerAdapter);
-
-        // Link with the viewPager
-        tabLayout = findViewById(R.id.tabLayout);
-        tabLayout.setupWithViewPager(viewPager);
-}
+        initiateTabbedView();
+        initiateDatabase();
+    }
 
 
     // Inflate the menu at top right
@@ -37,7 +37,11 @@ public class ActivityMain extends AppCompatActivity {
         return true;
     }
 
-    // Handle option menu clicks
+    /**
+     * Runs when a tab is selected
+     * @param item The menu item
+     * @return True if action handled, false otherwise
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -53,5 +57,28 @@ public class ActivityMain extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    /**
+     * Initiates the tab views, ensuring all the individual tabs are loaded
+     */
+    private void initiateTabbedView() {
+        // Get the viewPager and set it's PagerAdapter so it displays items
+        ViewPager viewPager = findViewById(R.id.viewPager);
+        AdapterMainTabs pagerAdapter = new AdapterMainTabs(getSupportFragmentManager(), ActivityMain.this);
+        viewPager.setAdapter(pagerAdapter);
+
+        // Link with the viewPager
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+        tabLayout.setupWithViewPager(viewPager);
+    }
+
+    /**
+     * Initiates a room SQLlite database for storing contacts
+     */
+    private void initiateDatabase() {
+        databaseContacts = Room.databaseBuilder(this, DatabaseContacts.class, DATABASE_NAME)
+                .fallbackToDestructiveMigration()
+                .build();
     }
 }

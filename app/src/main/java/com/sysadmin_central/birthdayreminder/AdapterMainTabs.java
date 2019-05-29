@@ -5,9 +5,9 @@
 package com.sysadmin_central.birthdayreminder;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
 public class AdapterMainTabs extends FragmentPagerAdapter {
     private String tabTitles[];
