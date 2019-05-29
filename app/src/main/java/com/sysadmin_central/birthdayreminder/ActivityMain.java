@@ -20,12 +20,12 @@ public class ActivityMain extends AppCompatActivity {
 
         // Get the viewPager and set it's PagerAdapter so it displays items
         viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new SampleFragmentPagerAdapter(getSupportFragmentManager(), ActivityMain.this));
+        AdapterMainTabs pagerAdapter = new AdapterMainTabs(getSupportFragmentManager(), ActivityMain.this);
+        viewPager.setAdapter(pagerAdapter);
 
         // Link with the viewPager
         tabLayout = findViewById(R.id.tabLayout);
         tabLayout.setupWithViewPager(viewPager);
-
 }
 
 

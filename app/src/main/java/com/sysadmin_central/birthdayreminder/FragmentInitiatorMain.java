@@ -5,37 +5,46 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-public class FragmentHome extends Fragment {
+public class FragmentInitiatorMain extends Fragment {
     public static final String ARG_PAGE = "ARG_PAGE";
-
     private int mPage;
 
     // Singleton pattern to create a new instance of the fragment
-    public static FragmentHome newInstance(int page) {
+    public static FragmentInitiatorMain newInstance(int page) {
         Bundle args = new Bundle();
         args.putInt(ARG_PAGE, page);
 
-        FragmentHome fragment = new FragmentHome();
+        FragmentInitiatorMain fragment = new FragmentInitiatorMain();
         fragment.setArguments(args);
 
         return fragment;
     }
 
+    // Calls super and gets the current page number
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPage = getArguments().getInt(ARG_PAGE);
     }
 
-    //TODO implement custom views on each tab
+    //Implement different pages on each tab
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
-        TextView textView = (TextView) view.findViewById(R.id.textView);
-        textView.setText("Fragment #" + mPage);
+        View v;
 
-        return view;
+        switch(mPage) {
+            case 0:
+                v = inflater.inflate(R.layout.fragment_home, container, false);
+                return v;
+            case 1:
+                v = inflater.inflate(R.layout.fragment_list, container, false);
+                return v;
+            case 2:
+                v = inflater.inflate(R.layout.fragment_calendar, container, false);
+                return v;
+            default:
+                return null;
+        }
     }
 }

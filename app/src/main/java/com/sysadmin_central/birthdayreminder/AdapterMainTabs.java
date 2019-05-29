@@ -2,7 +2,6 @@
  * Controls order of the tables, titles and their associated contents
  */
 
-
 package com.sysadmin_central.birthdayreminder;
 
 import android.content.Context;
@@ -10,27 +9,25 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+public class AdapterMainTabs extends FragmentPagerAdapter {
     private String tabTitles[];
-    int PAGE_COUNT; //TODO get dynamic count?
-    private Context context;
+    int pageCount;
 
-    public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
+    public AdapterMainTabs(FragmentManager fm, Context context) {
         super(fm);
-        this.context = context;
 
         tabTitles = new String[] {context.getResources().getString(R.string.home), context.getResources().getString(R.string.list), context.getResources().getString(R.string.calendar)}; //TODO load names
-        PAGE_COUNT = tabTitles.length;
+        pageCount = tabTitles.length;
     }
 
     @Override
     public int getCount() {
-        return PAGE_COUNT;
+        return pageCount;
     }
 
     @Override
     public Fragment getItem(int position) {
-        return FragmentHome.newInstance(position + 1);
+        return FragmentInitiatorMain.newInstance(position);
     }
 
     // Generate the title based on tabTitles
