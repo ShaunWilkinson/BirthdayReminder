@@ -11,54 +11,42 @@ import androidx.fragment.app.DialogFragment;
 import java.util.Calendar;
 
 public class FragmentDatePicker extends DialogFragment implements DatePickerDialog.OnDateSetListener {
-    DatePickerDialog.OnDateSetListener mCallback;
-
-    /**
-     * An interface containing onDateSet
-     * Container must implement this interface
-     */
-    public interface OnDateSetListener {
-        public void onDateSet(DatePicker view, int year, int month, int day);
-    }
-
-    /**
-     * Ensures that the container has implemented the interface
-     * @param context the containing context
-     */
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
-        try {
-            mCallback = (DatePickerDialog.OnDateSetListener) context;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(context.toString() + " must implement OnDateSetListener");
-        }
-    }
+    private OnDateSetListener callbackListener;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
-        final Calendar c = Calendar.getInstance();
-        int year = c.get(Calendar.YEAR);
-        int month = c.get(Calendar.MONTH);
-        int day = c.get(Calendar.DAY_OF_MONTH);
+        final Calendar calendar = Calendar.getInstance(getResources().getConfiguration().locale);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH);
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
 
         // Create a new instance of DatePickerDialog and return it
         return new DatePickerDialog(getActivity(), this, year, month, day);
     }
 
-    /**
-     * Called when a date has been picked
-     * @param view The datepicker
-     * @param year The selected year
-     * @param month The selected month
-     * @param day The selected day
-     */
-    public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
-        if(mCallback != null) {
-            mCallback.onDateSet(view, year, month, day);
+    // Ensures that the OnDateSetListener is implemented in calling class
+    @Override
+    public void onAttach(Context activity) {
+        super.onAttach(activity);
+
+        try {
+            callbackListener = (OnDateSetListener) getTargetFragment();
+
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnDateSetListener.");
         }
+    }
+
+    // Overriden by calling function
+    @Override
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+        if(callbackListener != null) {
+            callbackListener.onDateSet(view, year, month, dayOfMonth);
+        }
+    }
+
+    public interface OnDateSetListener {
+        void onDateSet(DatePicker view, int year, int month, int dayOfMonth);
     }
 }

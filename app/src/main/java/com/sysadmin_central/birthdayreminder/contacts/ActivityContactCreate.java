@@ -31,4 +31,5 @@ public class ActivityContactCreate extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+
 }
