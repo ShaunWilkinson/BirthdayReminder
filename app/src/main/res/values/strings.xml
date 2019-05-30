@@ -13,4 +13,9 @@
     <string name="title_activity_contact_create">Create a Contact</string>
     <string name="action_settings">Settings</string>
 
+    <!-- ========= Contact Form ========== -->
+    <string name="hint_name_enter">Name</string>
+    <string name="hint_birthday_enter">Birthday</string>
+    <string name="hint_phone_enter">Phone Number</string>
+    <string name="hint_email_enter">Email</string>
 </resources>

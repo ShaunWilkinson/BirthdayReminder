@@ -42,6 +42,7 @@ public class FragmentInitiatorMain extends Fragment {
             case 0:
                 v = inflater.inflate(R.layout.fragment_home, container, false);
 
+                // Initiate the 'Add contact' button then start a new activity
                 Button addContact = v.findViewById(R.id.btnCreateContact);
                 addContact.setOnClickListener(new View.OnClickListener() {
                     @Override
