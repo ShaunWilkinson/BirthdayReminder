@@ -10,5 +10,7 @@
     <!-- ========= Options Menu ========== -->
     <string name="action_create_contact">Create Contact</string>
     <string name="action_import_contact">Import Contact</string>
+    <string name="title_activity_contact_create">Create a Contact</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

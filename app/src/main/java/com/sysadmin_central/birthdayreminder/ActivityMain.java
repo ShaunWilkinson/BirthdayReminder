@@ -38,7 +38,7 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     /**
-     * Runs when a tab is selected
+     * Runs when a menu item is selected
      * @param item The menu item
      * @return True if action handled, false otherwise
      */
